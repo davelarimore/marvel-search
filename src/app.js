@@ -21,6 +21,8 @@ class App extends Component {
       detailScreen: false,
       searchString: '',
       searchResults: [],
+      resultsOffset: 0,
+      resultsTotal: 0,
       selectedComic: '',
       comicData: {} };
   }
@@ -44,12 +46,20 @@ class App extends Component {
     });
   }
 
+  //pin screens to top
+  componentDidUpdate() {
+    window.scrollTo(0, 0)
+  }
+
   onSearchChange(string) {
     this.setState({ searchString: string });
   }
 
   onResultsChange(response) {
     this.setState({ detailScreen: false });
+    this.setState({ resultsOffset: 0 });
+    this.setState({ resultsTotal: response.data.total });
+    this.setState({ resultsOffset: response.data.offset });
     this.setState({ searchResults: response.data.results });
   }
 
@@ -81,9 +91,15 @@ class App extends Component {
       mainScreen = <ComicDetail selectedComic={this.state.selectedComic} comicData={this.state.comicData} onBack={this.onBack}/>
     } else if (resultsFound) {
       mainScreen =
-        <div className='thumbnailContainer'>
-          <ResultsList searchResults={this.state.searchResults} onComicClick={this.onComicClick} />
-        </div>
+          <ResultsList
+          searchString={this.state.searchString}
+          searchResults={this.state.searchResults}
+          resultsOffset={this.state.resultsOffset}
+          resultsTotal={this.state.resultsTotal}
+          onResultsChange={this.onResultsChange}
+          onComicClick={this.onComicClick}
+          toggleLoading={this.toggleLoading}
+        />
     } else {
       mainScreen = <StatusMessage body={'No results. Please try another search term.'}/>
     }
@@ -92,7 +108,7 @@ class App extends Component {
       <div className='app'>
         <header className='appHeader'>
           <h1 className='title'>Marvel Comic Search</h1>
-          <p className="preamble">Search for comics by name via the Marvel API</p>
+          <p className='preamble'>Search for comics by name via the Marvel API</p>
           <SearchForm
             searchString={this.state.searchString}
             onSearchChange={this.onSearchChange}

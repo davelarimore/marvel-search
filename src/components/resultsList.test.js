@@ -17,5 +17,5 @@ it('Renders without crashing', () => {
 
 it('Renders a thumbnail', () => {    
     const wrapper = shallow(<ResultsList searchResults={testData}/>);
-    expect(wrapper.find('div').hasClass('thumbnail')).toEqual(true);
+    expect(wrapper.find('div').first().hasClass('thumbnailContainer')).toEqual(true);
 });

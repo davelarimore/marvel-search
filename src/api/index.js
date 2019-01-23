@@ -8,15 +8,17 @@ const handleErrors = (response) => {
     return response;
 }
 
-export const searchComics = (searchString) => {
+export const searchComics = (searchString, offset) => {
     //get some results even if no string is provided
-    let query = `hasDigitalIssue=true&`;
-    if (searchString) {
-        query = `titleStartsWith=${searchString}&`
-        console.log(query);
-    } else {
+    let query = `hasDigitalIssue=true&apikey=${apikey}`;
+    if (searchString && offset) {
+        query = `titleStartsWith=${searchString}&offset=${offset}&apikey=${apikey}`;
+    } else if (searchString) {
+        query = `titleStartsWith=${searchString}&apikey=${apikey}`
+    } else if (offset) {
+        query = `hasDigitalIssue=true&offset=${offset}&apikey=${apikey}`;
     }
-    return fetch(`${API_BASE_URL}/comics?${query}apikey=${apikey}`, {
+    return fetch(`${API_BASE_URL}/comics?${query}`, {
     })
         .then(handleErrors)
         .then(res => res.json())
