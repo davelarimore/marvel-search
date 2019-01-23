@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,4 +29,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+main {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.thumbnailContainer {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  text-align: left;
+  line-height: 0;
+  margin-right: -2%;
+  margin-bottom: -2%;
 }
