@@ -15,12 +15,13 @@ export default class SearchForm extends React.Component {
     }
 
     handleSubmit(event) {
-        this.props.toggleLoading(true);
+        const { searchString, onResultsChange, toggleLoading} = this.props;
+        toggleLoading(true);
         event.preventDefault();
-        searchComics(this.props.searchString)
+        searchComics(searchString)
             .then((response) => {
-                this.props.onResultsChange(response);
-                this.props.toggleLoading(false);;
+                onResultsChange(response);
+                toggleLoading(false);;
             })
     }
 

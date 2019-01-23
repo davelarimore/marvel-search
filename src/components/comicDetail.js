@@ -15,8 +15,8 @@ export default class ComicDetail extends React.Component {
     render() {
         const { comicData } = this.props;
         const description = comicData.description !== '';
-        const pageCount = comicData.pageCount !== '';
-        const price = comicData.prices[0].price !== '';
+        const pageCount = comicData.pageCount > 0;
+        const price = comicData.prices[0].price > 0;
         const upc = comicData.upc !== '';
         let descriptionText, pageCountText, priceText, upcText;
 

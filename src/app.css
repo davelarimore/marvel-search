@@ -15,7 +15,7 @@
 }
 
 .title {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 3em;
   letter-spacing: -0.08em;
   text-transform: uppercase;
@@ -41,14 +41,4 @@ main {
   main {
     padding: 20px 20px 0 20px;
   }
-}
-
-.thumbnailContainer {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  text-align: left;
-  line-height: 0;
-  margin-right: -2%;
-  margin-bottom: -2%;
 }
