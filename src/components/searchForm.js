@@ -27,14 +27,15 @@ export default class SearchForm extends React.Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit} inline>
-                <FormGroup className="customFormGroup">
-                    <Label for="searchString" hidden>Search:</Label>
+                <FormGroup className='customFormGroup'>
+                    <Label for='searchString' hidden>Search:</Label>
                     <Input
-                    type="text"
+                    type='text'
                     value={this.props.searchString}
                     onChange={this.handleChange}
-                    name="searchString"
-                    id="searchString"
+                    name='searchString'
+                    id='searchString'
+                    placeholder='Enter comic name'
                     />
                 </FormGroup>
                 {' '}

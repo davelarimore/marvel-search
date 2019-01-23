@@ -21,38 +21,38 @@ export default class ComicDetail extends React.Component {
         let descriptionText, pageCountText, priceText, upcText;
 
         if (description) {
-            descriptionText = <p className="comicDetailText">{comicData.description}</p>;
+            descriptionText = <p className='comicDetailText'>{comicData.description}</p>;
         }
 
         if (pageCount) {
-            pageCountText = <p className="comicDetailText">Pages: {comicData.pageCount}</p>;
+            pageCountText = <p className='comicDetailText'>Pages: {comicData.pageCount}</p>;
         }
 
         if (price) {
             if (comicData.prices[0].price % 1 !== 0) {
-                priceText = <p className="comicDetailText">Price: {comicData.prices[0].price}</p>;
+                priceText = <p className='comicDetailText'>Price: {comicData.prices[0].price}</p>;
             } else {
                 const normalizedPrice = (comicData.prices[0].price / 100).toFixed(2);
-                priceText = <p className="comicDetailText">Price: {normalizedPrice}</p>;
+                priceText = <p className='comicDetailText'>Price: {normalizedPrice}</p>;
             }
         }
 
         if(upc) {
-            upcText = <p className="comicDetailText">UPC: {comicData.upc}</p>;
+            upcText = <p className='comicDetailText'>UPC: {comicData.upc}</p>;
         }
  
         return (
-            <Container>
+            <Container className='comicDetail'>
                 <Row>
-                    <Col xs="4">
+                    <Col xs='4'>
                         <img
                         className='thumbnailImg'
                         alt={comicData.title}
                         src={comicData.thumbnail.path + '/portrait_uncanny.' + comicData.thumbnail.extension}
                         />
                     </Col>
-                    <Col xs="8">
-                        <p className="comicDetailTitle">{comicData.title}</p>
+                    <Col xs='8'>
+                        <p className='comicDetailTitle'>{comicData.title}</p>
                         {descriptionText}
                         {pageCountText}
                         {priceText}
@@ -60,7 +60,7 @@ export default class ComicDetail extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col className='buttonContainer'>
                         <Button onClick={this.handleBack}>Back to results</Button>
                     </Col>
                 </Row>

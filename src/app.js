@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { searchComics } from './api';
 import SearchForm from './components/searchForm';
 import ResultsList from './components/resultsList';
 import ComicDetail from './components/comicDetail';
@@ -22,6 +23,17 @@ class App extends Component {
       searchResults: [],
       selectedComic: '',
       comicData: {} };
+  }
+
+  //pre-load some comics
+  componentWillMount() {
+      this.toggleLoading(true);
+      searchComics('')
+        .then((response) => {
+          this.onResultsChange(response);
+          this.toggleLoading(false);;
+        })
+
   }
 
   //block back button
@@ -69,17 +81,18 @@ class App extends Component {
       mainScreen = <ComicDetail selectedComic={this.state.selectedComic} comicData={this.state.comicData} onBack={this.onBack}/>
     } else if (resultsFound) {
       mainScreen =
-        <div className="thumbnailContainer">
+        <div className='thumbnailContainer'>
           <ResultsList searchResults={this.state.searchResults} onComicClick={this.onComicClick} />
         </div>
     } else {
-      mainScreen = <StatusMessage body={'No results'}/>
+      mainScreen = <StatusMessage body={'No results. Please try another search term.'}/>
     }
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="title">Marvel Comic Search</h1>
+      <div className='app'>
+        <header className='appHeader'>
+          <h1 className='title'>Marvel Comic Search</h1>
+          <p className="preamble">Search for comics by name via the Marvel API</p>
           <SearchForm
             searchString={this.state.searchString}
             onSearchChange={this.onSearchChange}

@@ -9,7 +9,14 @@ const handleErrors = (response) => {
 }
 
 export const searchComics = (searchString) => {
-    return fetch(`${API_BASE_URL}/comics?titleStartsWith=${searchString}&apikey=${apikey}`, {
+    //get some results even if no string is provided
+    let query = `hasDigitalIssue=true&`;
+    if (searchString) {
+        query = `titleStartsWith=${searchString}&`
+        console.log(query);
+    } else {
+    }
+    return fetch(`${API_BASE_URL}/comics?${query}apikey=${apikey}`, {
     })
         .then(handleErrors)
         .then(res => res.json())

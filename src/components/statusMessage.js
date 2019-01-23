@@ -1,10 +1,9 @@
 import React from 'react';
-// import { Modal, ModalBody } from 'reactstrap';
-
+import './statusMessage.css';
 
 export const StatusMessage = (props) => {
     return (
-        <p>{props.body}</p>
+        <p className='statusMessage'>{props.body}</p>
     )
 }
 

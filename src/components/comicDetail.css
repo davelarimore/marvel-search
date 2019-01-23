@@ -1,3 +1,9 @@
+.comicDetail {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
 .comicDetailText, .comicDetailTitle {
     text-align: left;
     line-height: 1.4em;
@@ -6,4 +12,20 @@
 .comicDetailTitle {
     font-size: 22px;
     font-weight: 700;
+}
+
+@media screen and (max-width: 420px) {
+    .comicDetail {
+        padding: 20px;
+    }
+    .comicDetailTitle {
+        font-size: 16px;
+    }
+    .comicDetailText {
+        font-size: 12px;
+    }
+}
+
+.buttonContainer {
+    padding-top: 30px;
 }
